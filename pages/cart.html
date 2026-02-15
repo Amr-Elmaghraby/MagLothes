@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart - MagLothes</title>
+    <link rel="icon" href="./../assets/icon/favicon.svg" />
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind Config for Dark Mode -->
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: {
+                50: "#eef2ff",
+                100: "#e0e7ff",
+                500: "#6366f1",
+                600: "#4f46e5",
+                700: "#4338ca",
+              },
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body
+    class="bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-white transition-colors duration-300 min-h-screen flex flex-col"
+  >
+    <!-- Header Placeholder -->
+    <div id="header"></div>
+
+    <!-- Cart Header -->
+    <section
+      class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-12"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h1 class="text-3xl md:text-4xl font-bold mb-2">Shopping Cart</h1>
+        <p class="text-indigo-100">Review your items and proceed to checkout</p>
+      </div>
+    </section>
+
+    <!-- Cart Content -->
+    <section class="flex-1 py-12 bg-zinc-50 dark:bg-zinc-950">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Empty State -->
+        <div id="cart-empty-state" class="hidden text-center py-16">
+          <div
+            class="w-24 h-24 bg-zinc-100 dark:bg-zinc-800 rounded-full flex items-center justify-center mx-auto mb-6"
+          >
+            <svg
+              class="w-12 h-12 text-zinc-500"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+              />
+            </svg>
+          </div>
+          <h2 class="text-2xl font-bold text-zinc-900 dark:text-white mb-4">
+            Your cart is empty
+          </h2>
+          <p class="text-zinc-600 dark:text-zinc-400 mb-8 max-w-md mx-auto">
+            Looks like you haven't added any items to your cart yet. Browse our
+            collection and find something you love!
+          </p>
+          <a
+            href="shop.html"
+            class="inline-flex items-center gap-2 px-8 py-4 bg-indigo-600 text-white rounded-xl font-semibold hover:bg-indigo-700 transition-colors"
+          >
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M10 19l-7-7m0 0l7-7m-7 7h18"
+              />
+            </svg>
+            Continue Shopping
+          </a>
+        </div>
+
+        <!-- Cart Content -->
+        <div id="cart-content" class="hidden">
+          <div class="grid lg:grid-cols-3 gap-8">
+            <!-- Cart Items -->
+            <div class="lg:col-span-2">
+              <div class="flex items-center justify-between mb-6">
+                <h2 class="text-xl font-semibold text-zinc-900 dark:text-white">
+                  Cart Items
+                </h2>
+                <button
+                  onclick="
+                    clearCart();
+                    renderCart();
+                  "
+                  class="text-red-500 hover:text-red-400 text-sm flex items-center gap-1 transition-colors"
+                >
+                  <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                    />
+                  </svg>
+                  Clear Cart
+                </button>
+              </div>
+
+              <div id="cart-items-container" class="space-y-4">
+                <!-- Cart items will be rendered here -->
+              </div>
+
+              <!-- Continue Shopping -->
+              <a
+                href="shop.html"
+                class="inline-flex items-center gap-2 mt-6 text-indigo-400 font-medium hover:underline"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                  />
+                </svg>
+                Continue Shopping
+              </a>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="lg:col-span-1">
+              <div
+                class="bg-white dark:bg-zinc-900 rounded-xl shadow-sm border border-zinc-200 dark:border-zinc-800 p-6 sticky top-24"
+              >
+                <h2 class="text-xl font-semibold text-white mb-6">
+                  Order Summary
+                </h2>
+
+                <div class="space-y-4 mb-6">
+                  <div
+                    class="flex justify-between text-zinc-600 dark:text-zinc-400"
+                  >
+                    <span>Subtotal</span>
+                    <span id="cart-subtotal">$0.00</span>
+                  </div>
+                  <div class="flex justify-between text-zinc-400">
+                    <span>Shipping</span>
+                    <span id="cart-shipping">$9.99</span>
+                  </div>
+                  <div class="flex justify-between text-zinc-400">
+                    <span>Tax</span>
+                    <span>Calculated at checkout</span>
+                  </div>
+                </div>
+
+                <div class="border-t border-zinc-800 pt-4 mb-6">
+                  <div
+                    class="flex justify-between text-xl font-bold text-zinc-900 dark:text-white"
+                  >
+                    <span>Estimated Total</span>
+                    <span id="cart-total">$0.00</span>
+                  </div>
+                </div>
+
+                <a
+                  href="checkout.html"
+                  class="block w-full py-4 bg-indigo-600 text-white text-center rounded-xl font-semibold hover:bg-indigo-700 transition-colors"
+                >
+                  Proceed to Checkout
+                </a>
+
+                <p class="text-center text-sm text-zinc-500 mt-4">
+                  Shipping & taxes calculated at checkout
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Placeholder -->
+    <div id="footer"></div>
+
+    <!-- Components Loader -->
+    <script src="../js/components.js"></script>
+    <script>
+      // Load header and footer components
+      document.addEventListener("DOMContentLoaded", () => {
+        loadComponent("header", "../components/header.html", "../");
+        loadComponent("footer", "../components/footer.html", "../");
+      });
+    </script>
+
+    <!-- JavaScript Files -->
+    <script type="module" src="../js/main.js"></script>
+
+    <!-- Mobile Menu Toggle -->
+    <script>
+      function toggleMobileMenu() {
+        const menu = document.getElementById("mobile-menu");
+        menu.classList.toggle("hidden");
+      }
+    </script>
+  </body>
+</html>

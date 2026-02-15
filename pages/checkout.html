@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout - MagLothes</title>
+    <link rel="icon" href="./../assets/icon/favicon.svg" />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind Config for Dark Mode -->
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: {
+                50: "#eef2ff",
+                100: "#e0e7ff",
+                500: "#6366f1",
+                600: "#4f46e5",
+                700: "#4338ca",
+              },
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body
+    class="bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-white transition-colors duration-300 min-h-screen flex flex-col"
+  >
+    <!-- Navigation -->
+    <div id="header"></div>
+
+    <!-- Checkout Header -->
+    <section
+      class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-8"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h1 id="checkout-title" class="text-2xl md:text-3xl font-bold">
+          Checkout
+        </h1>
+      </div>
+    </section>
+
+    <!-- Checkout Content -->
+    <section
+      class="flex-1 py-12 checkout-container bg-zinc-50 dark:bg-zinc-950"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Error Message -->
+        <div
+          id="checkout-error"
+          class="hidden mb-6 p-4 bg-red-900/30 border border-red-700 text-red-400 rounded-lg"
+        ></div>
+
+        <div class="grid lg:grid-cols-3 gap-8">
+          <!-- Checkout Form -->
+          <div class="lg:col-span-2">
+            <form id="checkout-form" class="space-y-8">
+              <!-- Contact Information -->
+              <div
+                class="bg-white dark:bg-zinc-900 rounded-xl shadow-sm border border-zinc-200 dark:border-zinc-800 p-6"
+              >
+                <h2
+                  class="text-lg font-semibold text-zinc-900 dark:text-white mb-4 flex items-center gap-2"
+                >
+                  <span
+                    class="w-8 h-8 bg-indigo-900/30 text-indigo-400 rounded-full flex items-center justify-center text-sm"
+                    >1</span
+                  >
+                  Contact Information
+                </h2>
+                <div>
+                  <label
+                    class="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2"
+                    >Email Address</label
+                  >
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    class="w-full px-4 py-3 bg-white dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-zinc-900 dark:text-white placeholder-zinc-500"
+                    placeholder="your@email.com"
+                  />
+                </div>
+              </div>
+
+              <!-- Shipping Address -->
+              <div
+                class="bg-zinc-900 rounded-xl shadow-sm border border-zinc-800 p-6"
+              >
+                <h2
+                  class="text-lg font-semibold text-white mb-4 flex items-center gap-2"
+                >
+                  <span
+                    class="w-8 h-8 bg-indigo-900/30 text-indigo-400 rounded-full flex items-center justify-center text-sm"
+                    >2</span
+                  >
+                  Shipping Address
+                </h2>
+                <div class="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-sm font-medium text-zinc-300 mb-2"
+                      >First Name</label
+                    >
+                    <input
+                      type="text"
+                      name="shipping-first-name"
+                      required
+                      class="w-full px-4 py-3 bg-white dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-zinc-900 dark:text-white"
+                    />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-zinc-300 mb-2"
+                      >Last Name</label
+                    >
+                    <input
+                      type="text"
+                      name="shipping-last-name"
+                      required
+                      class="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white"
+                    />
+                  </div>
+                  <div class="sm:col-span-2">
+                    <label class="block text-sm font-medium text-zinc-300 mb-2"
+                      >Address</label
+                    >
+                    <input
+                      type="text"
+                      name="shipping-address"
+                      required
+                      class="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white placeholder-zinc-500"
+                      placeholder="123 Main Street"
+                    />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-zinc-300 mb-2"
+                      >City</label
+                    >
+                    <input
+                      type="text"
+                      name="shipping-city"
+                      required
+                      class="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white"
+                    />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-zinc-300 mb-2"
+                      >State</label
+                    >
+                    <input
+                      type="text"
+                      name="shipping-state"
+                      required
+                      class="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white"
+                    />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-zinc-300 mb-2"
+                      >ZIP Code</label
+                    >
+                    <input
+                      type="text"
+                      name="shipping-zip"
+                      required
+                      class="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white"
+                    />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-zinc-300 mb-2"
+                      >Country</label
+                    >
+                    <select
+                      name="shipping-country"
+                      required
+                      class="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white"
+                    >
+                      <option value="US">United States</option>
+                      <option value="CA">Canada</option>
+                      <option value="UK">United Kingdom</option>
+                      <option value="AU">Australia</option>
+                    </select>
+                  </div>
+                  <div class="sm:col-span-2">
+                    <label class="block text-sm font-medium text-zinc-300 mb-2"
+                      >Phone Number</label
+                    >
+                    <input
+                      type="tel"
+                      name="shipping-phone"
+                      required
+                      class="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white placeholder-zinc-500"
+                      placeholder="+1 (555) 123-4567"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Payment Information -->
+              <div
+                class="bg-zinc-900 rounded-xl shadow-sm border border-zinc-800 p-6"
+              >
+                <h2
+                  class="text-lg font-semibold text-white mb-4 flex items-center gap-2"
+                >
+                  <span
+                    class="w-8 h-8 bg-indigo-900/30 text-indigo-400 rounded-full flex items-center justify-center text-sm"
+                    >3</span
+                  >
+                  Payment Information
+                </h2>
+                <div class="space-y-4">
+                  <div>
+                    <label class="block text-sm font-medium text-zinc-300 mb-2"
+                      >Card Number</label
+                    >
+                    <input
+                      type="text"
+                      name="card-number"
+                      required
+                      maxlength="19"
+                      class="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white placeholder-zinc-500"
+                      placeholder="1234 5678 9012 3456"
+                    />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-zinc-300 mb-2"
+                      >Name on Card</label
+                    >
+                    <input
+                      type="text"
+                      name="card-name"
+                      required
+                      class="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white placeholder-zinc-500"
+                      placeholder="John Doe"
+                    />
+                  </div>
+                  <div class="grid sm:grid-cols-2 gap-4">
+                    <div>
+                      <label
+                        class="block text-sm font-medium text-zinc-300 mb-2"
+                        >Expiry Date</label
+                      >
+                      <input
+                        type="text"
+                        name="card-expiry"
+                        required
+                        maxlength="5"
+                        class="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white placeholder-zinc-500"
+                        placeholder="MM/YY"
+                      />
+                    </div>
+                    <div>
+                      <label
+                        class="block text-sm font-medium text-zinc-300 mb-2"
+                        >CVV</label
+                      >
+                      <input
+                        type="text"
+                        name="card-cvv"
+                        required
+                        maxlength="4"
+                        class="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white placeholder-zinc-500"
+                        placeholder="123"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Submit Button (Mobile Only) -->
+              <button
+                type="submit"
+                class="lg:hidden w-full py-4 bg-indigo-600 text-white rounded-xl font-semibold hover:bg-indigo-700 transition-colors"
+              >
+                Complete Order
+              </button>
+            </form>
+          </div>
+
+          <!-- Order Summary -->
+          <div class="lg:col-span-1">
+            <div
+              class="bg-white dark:bg-zinc-900 rounded-xl shadow-sm border border-zinc-200 dark:border-zinc-800 p-6 sticky top-24"
+            >
+              <h2
+                class="text-lg font-semibold text-zinc-900 dark:text-white mb-4"
+              >
+                Order Summary
+              </h2>
+
+              <!-- Order Items -->
+              <div
+                id="checkout-items-container"
+                class="space-y-4 mb-6 max-h-64 overflow-y-auto"
+              >
+                <!-- Items will be rendered here -->
+              </div>
+
+              <!-- Order Totals -->
+              <div id="checkout-summary" class="border-t border-zinc-800 pt-4">
+                <!-- Totals will be rendered here -->
+              </div>
+
+              <!-- Submit Button (Desktop) -->
+              <button
+                type="submit"
+                form="checkout-form"
+                class="hidden lg:block w-full mt-6 py-4 bg-indigo-600 text-white rounded-xl font-semibold hover:bg-indigo-700 transition-colors"
+              >
+                Complete Order
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+    <!-- JavaScript Files -->
+    <script src="../js/components.js"></script>
+    <script>
+      // Load header and footer components
+      document.addEventListener("DOMContentLoaded", () => {
+        loadComponent("header", "./../components/header.html","../");
+        loadComponent("footer", "./../components/footer.html","../");
+      });
+    </script>
+
+    <!-- JavaScript Files -->
+    <script type="module" src="../js/main.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/cart.js"></script>
+    <script src="../js/checkout.js"></script>
+
+    <!-- Mobile Menu Toggle -->
+    <script>
+      function toggleMobileMenu() {
+        const menu = document.getElementById("mobile-menu");
+        menu.classList.toggle("hidden");
+      }
+    </script>
+  </body>
+</html>
