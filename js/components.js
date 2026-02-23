@@ -29,7 +29,7 @@ async function loadComponent(elementId, componentPath, basePath = "./") {
     html = html.replace(/href="\.\//g, `href="${basePath}`);
     html = html.replace(/href="pages\//g, `href="${basePath}pages/`);
     html = html.replace(/href="index\.html"/g, `href="${basePath}index.html"`);
-
+    console.log(html);
     const container = document.getElementById(elementId);
     if (container) {
       container.innerHTML = html;
